@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Valentine</title>
+
+  <style>
+    body {
+      font-size: 15pt;
+      background: peachpuff;
+      text-align: center;
+    }
+
+    .video-class {
+      margin-top: 2rem;
+    }
+
+    section > button {
+      width: 10rem;
+      height: 5rem;
+      border: 0;
+      border-radius: 1rem;
+      font-size: 2rem;
+      margin: 1rem;
+    }
+
+    section > button:active {
+      background: pink;
+    }
+
+    #No-button {
+      width: 9rem;
+      background: red;
+      color: white;
+    }
+
+    #yes-btn {
+      background: green;
+      color: white;
+    }
+
+    #choice {
+      display: none;
+      background: green;
+      width: 20rem;
+      height: 10rem;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    #main-vid {
+      padding-inline: 2rem;
+    }
+  </style>
+</head>
+
+<body id="body">
+
+  <div class="video-class">
+
+    <!-- IMPORTANT: no src / autoplay / loop -->
+    <video
+      id="main-vid"
+      width="300"
+      height="300"
+      muted
+      playsinline
+    ></video>
+
+    <h2 id="text">WOULD YOU BE MY VAL</h2>
+
+    <section>
+      <button type="button" id="yes-btn"><strong>Yes</strong></button>
+      <button type="button" id="No-button"><strong>No</strong></button>
+      <button type="button" id="choice">
+        <strong>YES MY LOVE I WOULD BE YOUR VAL</strong>
+      </button>
+    </section>
+
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const video = document.getElementById('main-vid');
+      const noBtn = document.getElementById('No-button');
+      const yesBtn = document.getElementById('yes-btn');
+      const choice = document.getElementById('choice');
+      const text = document.getElementById('text');
+
+      video.muted = true;
+      video.playsInline = true;
+
+      const videos = [
+        'beggin.mp4',
+        'val-sad.mp4',
+        'tears.mp4'
+      ];
+
+      const messages = [
+        'pretty please🥺💔',
+        'please be my valentine🥺💔',
+        'one last chance?🥺🥺'
+      ];
+
+      let index = 0;
+      let clicks = 0;
+
+      function playVideo(src, loop = false) {
+        video.pause();
+        video.currentTime = 0;
+        video.loop = loop;
+        video.src = src;
+        video.load();
+
+        video.addEventListener(
+          'canplay',
+          () => {
+            video.play().catch(err => console.log(err));
+          },
+          { once: true }
+        );
+      }
+
+      // start first video
+      playVideo('val.mp4', true);
+
+      function changeVid() {
+        playVideo(videos[index]);
+        text.textContent = messages[index];
+        document.body.style.background = 'pink';
+
+        index++;
+        clicks++;
+
+        if (clicks >= 3) {
+          noBtn.style.display = 'none';
+          yesBtn.style.display = 'none';
+          playVideo('love.mp4');
+          choice.style.display = 'inline-block';
+          text.textContent = 'YOU LEFT ME NO CHOICE 😏❤️';
+        }
+      }
+
+      function yesVideo() {
+        playVideo('val-yes.mp4');
+        noBtn.style.display = 'none';
+        yesBtn.style.display = 'none';
+        text.textContent = "Can't say NO now 😝❤️";
+      }
+
+      function choiceVid() {
+        playVideo('together.mp4', true);
+        choice.style.display = 'none';
+        text.textContent = 'I knew you would come around 😝❤️';
+      }
+
+      noBtn.addEventListener('click', changeVid);
+      yesBtn.addEventListener('click', yesVideo);
+      choice.addEventListener('click', choiceVid);
+    });
+  </script>
+
+</body>
+</html>

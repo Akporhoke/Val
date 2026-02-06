@@ -1,0 +1,54 @@
+body {
+    font-size: 15pt;
+    background:peachpuff;
+}
+
+.video-class{
+    align-self: center;
+    justify-self: center;
+}
+
+section>button{
+    
+    width: 10rem;
+    height: 5rem;
+    border: 0;
+    border-radius:1rem;
+    font-size:2rem;
+}
+section>button:active{
+    background:pink;
+}
+
+#No-button{
+    width:9rem;
+    background: red;
+}
+#yes-btn{
+    align-self: center;
+    justify-self: center;
+    background:green;
+}
+
+#choice{
+     display :none;
+}
+
+#choice{
+    background: green;
+    width:20rem;
+    height:10rem;
+    align-self: center;
+    justify-self: center;
+    align-content: center;
+    justify-content: center;
+}
+
+#main-vid{
+    
+    align-self: center;
+    justify-self: center;
+    align-content: center;
+    justify-content: center;
+    padding-inline: 2rem;
+}
