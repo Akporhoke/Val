@@ -7,6 +7,16 @@ body {
     align-self: center;
     justify-self: center;
 }
+section{
+    align-self: center;
+    justify-self: center;
+}
+
+h2{
+    align-self: center;
+    justify-self:center;
+}
+
 
 section>button{
     
@@ -51,4 +61,12 @@ section>button:active{
     align-content: center;
     justify-content: center;
     padding-inline: 2rem;
+}
+
+#text{
+    align-self:center;
+    justify-self: center;
+    
+    padding:0;
+    
 }

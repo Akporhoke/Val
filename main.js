@@ -54,7 +54,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
       playVideo('love.mp4');
       choice.style.display = 'block';
-      text.textContent = 'YOU LEFT ME NO CHOICE 😏❤️';
+      text.textContent = 'YOU LEFT ME NO CHOICE❤️';
+      
     }
   }
 
@@ -68,7 +69,9 @@ window.addEventListener('DOMContentLoaded', () => {
   function choiceVid() {
     playVideo('together.mp4', true);
     choice.style.display = 'none';
-    text.textContent = 'I knew you would come around 😝❤️';
+    text.textContent = 'I knew you would come around 😝💐❤️';
+    text.style.textAlign="center"
+    text.style.wrap="nowrap"
   }
 
   noBtn.addEventListener('click', changeVid);
