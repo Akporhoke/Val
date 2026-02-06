@@ -23,6 +23,15 @@ window.addEventListener('DOMContentLoaded', () => {
   let index = 0;
   let clicks = 0;
 
+  // 🔥 Function to send response to Vercel API
+  function sendResponse(data) {
+    fetch('/api/response', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(err => console.log(err));
+  }
+
   function playVideo(src, loop = false) {
     video.pause();
     video.currentTime = 0;
@@ -35,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
       () => {
         video.play().catch(err => console.log(err));
       },
-      { once: true } // 🔥 THIS is the magic
+      { once: true } // 🔥 ensures it only fires once
     );
   }
 
@@ -46,7 +55,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.style.background = 'pink';
 
     index++;
-    clicks++;
+    clicks++; // increment NO clicks
 
     if (clicks >= 3) {
       noBtn.style.display = 'none';
@@ -55,7 +64,6 @@ window.addEventListener('DOMContentLoaded', () => {
       playVideo('love.mp4');
       choice.style.display = 'block';
       text.textContent = 'YOU LEFT ME NO CHOICE❤️';
-      
     }
   }
 
@@ -64,16 +72,29 @@ window.addEventListener('DOMContentLoaded', () => {
     noBtn.style.display = 'none';
     yesBtn.style.display = 'none';
     text.textContent = "Can't say NO now 😝❤️";
+
+    // 🔥 Send response to Vercel API
+    sendResponse({
+      yes: true,
+      noClicks: clicks
+    });
   }
 
   function choiceVid() {
     playVideo('together.mp4', true);
     choice.style.display = 'none';
     text.textContent = 'I knew you would come around 😝💐❤️';
-    text.style.textAlign="center"
-    text.style.wrap="nowrap"
+    text.style.textAlign = "center";
+    text.style.wrap = "nowrap";
+
+    // 🔥 Send response to Vercel API
+    sendResponse({
+      yes: true,
+      noClicks: clicks
+    });
   }
 
+  // Event listeners
   noBtn.addEventListener('click', changeVid);
   yesBtn.addEventListener('click', yesVideo);
   choice.addEventListener('click', choiceVid);
