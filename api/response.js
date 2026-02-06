@@ -3,13 +3,11 @@ export default function handler(req, res) {
     const { yes, noClicks } = req.body;
 
     console.log('User response:');
-    console.log('YES:', yes);        // true if she clicked YES or final CHOICE
-    console.log('NO clicks:', noClicks); // number of times she clicked NO
+    console.log('YES:', yes);       // true if YES or final CHOICE was clicked
+    console.log('NO clicks:', noClicks);
 
-    // Respond back to frontend
     return res.status(200).json({ received: true });
   }
 
-  // Handle other request methods
   res.status(405).json({ error: 'Method not allowed' });
 }
