@@ -4,6 +4,9 @@ window.addEventListener('DOMContentLoaded', () => {
   const yesBtn = document.getElementById('yes-btn');
   const choice = document.getElementById('choice');
   const text = document.getElementById('text');
+  const heart = document.getElementById('heart')
+  
+  console.log(heart)
 
   video.muted = true;
   video.playsInline = true;
@@ -25,7 +28,22 @@ window.addEventListener('DOMContentLoaded', () => {
     'i said no',
     'let me be'
   ]
-
+  
+   const width = [
+     
+     '9rem',
+     '8rem',
+     '6rem'
+     
+   ]  
+   
+   const font=[
+     '20px',
+     '18px','16px',
+     '14px'
+     
+   ]
+  
   let index = 0;
   let clicks = 0; // NO clicks
 
@@ -38,7 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }).catch(err => console.log(err));
   }
 
-  function playVideo(src, loop = false) {
+  function playVideo(src, loop = true) {
     video.pause();
     video.currentTime = 0;
     video.loop = loop;
@@ -56,18 +74,22 @@ window.addEventListener('DOMContentLoaded', () => {
     playVideo(videos[index]);
     text.textContent = messages[index];
     noBtn.textContent = noContent[index];
+   noBtn.style.width = width[index]
+   noBtn.style.fontSize = font[index]
     document.body.style.background = 'pink';
 
     index++;
     clicks++; // track NO clicks
 
     if (clicks >= 4) {
-      noBtn.style.display = 'none';
-      yesBtn.style.display = 'none';
-      playVideo('love.mp4');
-      choice.style.display = 'block';
-      text.textContent = 'YOU LEFT ME NO CHOICE❤️';
-    }
+    noBtn.style.display = 'none';
+    yesBtn.style.display = 'none';
+
+    playVideo('love.mp4', false); // 🚫 no loop
+
+    choice.style.display = 'block';
+    text.textContent = 'YOU LEFT ME NO CHOICE ❤️🪄🧙‍♀️';
+}
   }
 
   // YES button click
@@ -75,6 +97,7 @@ window.addEventListener('DOMContentLoaded', () => {
     playVideo('val-yes.mp4');
     noBtn.style.display = 'none';
     yesBtn.style.display = 'none';
+    heart.style.display = 'block'
     text.textContent = "Can't say NO now 😝❤️";
 
     // Track YES click

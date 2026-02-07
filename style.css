@@ -33,6 +33,8 @@ section>button:active{
 #No-button{
     width:9rem;
     background: red;
+    align-self:center;
+    justify-self:center 
 }
 #yes-btn{
     align-self: center;
@@ -68,4 +70,52 @@ section>button:active{
     justify-self: center;
     padding:0;
     
+}
+
+.heart-class{
+    padding:3rem;
+}
+
+.heart {
+    display:none;
+  width: 60px;
+  height: 60px;
+  background: crimson;
+  position: relative;
+  transform: rotate(-45deg);
+  animation: pulse 1.2s infinite ease-in-out;
+  align-self: center;
+  justify-self: center;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  width: 60px;
+  height: 60px;
+  background: crimson;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -30px;
+  left: 0;
+}
+
+.heart::after {
+  left: 30px;
+  top: 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(-45deg) scale(1);
+  }
 }
