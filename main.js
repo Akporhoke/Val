@@ -6,7 +6,75 @@ window.addEventListener('DOMContentLoaded', () => {
   const text = document.getElementById('text');
   const heart = document.getElementById('heart')
   
-  console.log(heart)
+
+
+
+
+let scale = 1;
+const step = 0.2; // growth per tap
+let shrinkInterval;
+
+heart.addEventListener('click', () => {
+  // Grow
+  scale += step;
+  scale = Math.min(scale, 8);  // max size
+  heart.style.setProperty('--scale', scale);
+
+  // restart shrink process
+    clearInterval(shrinkInterval);
+
+  // Shrink step by step after 1.5s
+  shrinkInterval = setInterval(() => {
+    scale -= step;
+    if (scale <= 1) {
+      scale = 1;
+      clearInterval(shrinkInterval);
+    }
+    heart.style.setProperty('--scale', scale);
+  }, 1500);
+});
+
+
+
+ let heartClicks = 0; // count clicks
+
+heart.addEventListener('click', () => {
+  // increment count
+  heartClicks++;
+  
+  // grow the heart (existing code)
+  scale += step;
+  scale = Math.min(scale, 3);
+  heart.style.setProperty('--scale', scale);
+  
+  // shrink step-by-step (existing code)
+  clearInterval(shrinkInterval);
+  shrinkInterval = setInterval(() => {
+    scale -= step;
+    if (scale <= 1) {
+      scale = 1;
+      clearInterval(shrinkInterval);
+    }
+    heart.style.setProperty('--scale', scale);
+  }, 1500);
+  
+  // --- send click count to backend ---
+  fetch('/api/heart-click', { // your Vercel API route
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clicks: heartClicks })
+    })
+    .then(res => res.json())
+    .then(data => console.log('Backend response:', data))
+    .catch(err => console.error('Error sending clicks:', err));
+});
+
+
+
+
+
+
+
 
   video.muted = true;
   video.playsInline = true;

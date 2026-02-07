@@ -1,6 +1,7 @@
 body {
     font-size: 16px;
     background:peachpuff;
+    overflow-x: hidden;
 }
 
 .video-class{
@@ -77,15 +78,17 @@ section>button:active{
 }
 
 .heart {
-    display:none;
   width: 60px;
   height: 60px;
   background: crimson;
   position: relative;
-  transform: rotate(-45deg);
+  transform: rotate(-45deg) scale(1);
   animation: pulse 1.2s infinite ease-in-out;
+  cursor: pointer;
+  transition: transform 0.9s ease;
   align-self: center;
   justify-self: center;
+  display:none;
 }
 
 .heart::before,
@@ -96,6 +99,7 @@ section>button:active{
   background: crimson;
   border-radius: 50%;
   position: absolute;
+  
 }
 
 .heart::before {
@@ -110,12 +114,12 @@ section>button:active{
 
 @keyframes pulse {
   0% {
-    transform: rotate(-45deg) scale(1);
+    transform: rotate(-45deg) scale(var(--scale, 1));
   }
   50% {
-    transform: rotate(-45deg) scale(1.15);
+    transform: rotate(-45deg) scale(calc(var(--scale, 1) * 1.1));
   }
   100% {
-    transform: rotate(-45deg) scale(1);
+    transform: rotate(-45deg) scale(var(--scale, 1));
   }
 }
