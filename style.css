@@ -80,7 +80,7 @@ section>button:active{
 .heart {
   width: 60px;
   height: 60px;
-  background: crimson;
+  background: red;
   position: relative;
   transform: rotate(-45deg) scale(1);
   animation: pulse 1.2s infinite ease-in-out;
@@ -96,7 +96,7 @@ section>button:active{
   content: '';
   width: 60px;
   height: 60px;
-  background: crimson;
+  background:red;
   border-radius: 50%;
   position: absolute;
   

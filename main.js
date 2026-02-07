@@ -142,6 +142,7 @@ window.addEventListener('DOMContentLoaded', () => {
     choice.style.display = 'none';
     text.textContent = 'I knew you would come around 😝💐❤️';
     text.style.textAlign = 'center';
+    heart.style.display = 'block';
 
     // Also counts as YES
     yesClicked = true;
