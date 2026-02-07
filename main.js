@@ -17,8 +17,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const messages = [
     'pretty please🥺💔',
     'please be my valentine🥺💔',
-    'one last chance?🥺🥺'
+    'one last chance?🥺💐🥺'
   ];
+  
+  const noContent = [
+    'no',
+    'i said no',
+    'let me be'
+  ]
 
   let index = 0;
   let clicks = 0; // NO clicks
@@ -49,12 +55,13 @@ window.addEventListener('DOMContentLoaded', () => {
   function changeVid() {
     playVideo(videos[index]);
     text.textContent = messages[index];
+    noBtn.textContent = noContent[index];
     document.body.style.background = 'pink';
 
     index++;
     clicks++; // track NO clicks
 
-    if (clicks >= 3) {
+    if (clicks >= 4) {
       noBtn.style.display = 'none';
       yesBtn.style.display = 'none';
       playVideo('love.mp4');
